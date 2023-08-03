@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class AStarGrid : MonoBehaviour
+public class AStarGrid : SingletonMono<AStarGrid>
 {
     public Tilemap ObstacleTileMap;
     public Vector2 GridWorldSize;
@@ -92,6 +92,36 @@ public class AStarGrid : MonoBehaviour
         }
 
         return neighborList;
+    }
+
+    public AstarNode GetNeighborNode(AstarNode node, Vector3 direction)
+    {
+        int x = node.CoordinateX;
+        int y = node.CoordinateY;
+
+        bool left = x != 0;
+        bool right = x != gridWidth - 1;
+        bool down = y != 0;
+        bool up = y != gridHeight - 1;
+
+        if (direction == Vector3.left && left)
+        {
+            return nodeGrid[x - 1, y];
+        }
+        if (direction == Vector3.right && right)
+        {
+            return nodeGrid[x + 1, y];
+        }
+        if (direction == Vector3.down && down)
+        {
+            return nodeGrid[x, y - 1];
+        }
+        if (direction == Vector3.up && up)
+        {
+            return nodeGrid[x, y + 1];
+        }
+
+        return null;
     }
 
     private void OnDrawGizmos()

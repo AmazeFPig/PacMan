@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class AStarPathfinding : MonoBehaviour
 {
-    public AStarGrid AStarGrid;
-
     public bool IsDrawPath;
 
     private List<AstarNode> drawPathNodes = new List<AstarNode>();
 
     public List<AstarNode> FindPath(Vector3 startPosition, Vector3 endPosition)
     {
-        AstarNode startNode = AStarGrid.WorldToAStarNode(startPosition);
-        AstarNode endNode = AStarGrid.WorldToAStarNode(endPosition);
+        AstarNode startNode = AStarGrid.GetInstance().WorldToAStarNode(startPosition);
+        AstarNode endNode = AStarGrid.GetInstance().WorldToAStarNode(endPosition);
 
         // neighbors remaining
         List<AstarNode> openList = new List<AstarNode>();
@@ -36,7 +34,7 @@ public class AStarPathfinding : MonoBehaviour
 
             // list to hold neighbors
             List<AstarNode> toMerge = new List<AstarNode>();
-            foreach (AstarNode neighbor in AStarGrid.GetNeighborNodes(currentNode))
+            foreach (AstarNode neighbor in AStarGrid.GetInstance().GetNeighborNodes(currentNode))
             {
                 if (neighbor.IsObstacle || closedList.Contains(neighbor))
                 {
@@ -124,7 +122,7 @@ public class AStarPathfinding : MonoBehaviour
     public Vector3 WorldPointFromNode(AstarNode node)
     {
         //for use by entities using the pathfinding
-        return AStarGrid.AStarNodeToWorld(node);
+        return AStarGrid.GetInstance().AStarNodeToWorld(node);
     }
 
     private void OnDrawGizmos()
@@ -137,7 +135,7 @@ public class AStarPathfinding : MonoBehaviour
             {
                 foreach (AstarNode node in drawPathNodes)
                 {
-                    Gizmos.DrawWireCube(AStarGrid.AStarNodeToWorld(node), new Vector3(1, 1, 1) * AStarGrid.NodeSideLength);
+                    Gizmos.DrawWireCube(AStarGrid.GetInstance().AStarNodeToWorld(node), new Vector3(1, 1, 1) * AStarGrid.GetInstance().NodeSideLength);
                 }
             }
         }
