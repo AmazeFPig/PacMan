@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : SingletonMono<LevelManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private int score = 0;
+
+    private void Start()
     {
-        
+        EventCenter.GetInstance().AddEventListener<int>("DotEaten", UpdateScore);
+        EventCenter.GetInstance().AddEventListener<int>("PowerUpEaten", UpdateScore);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateScore(int scoreToAdd)
     {
-        
+        score += scoreToAdd;
+        Debug.Log($"Score: {score}");
+        UIManager.GetInstance().UpdateScoreText(score);
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter.GetInstance().RemoveEventListener<int>("DotEaten", UpdateScore);
     }
 }
