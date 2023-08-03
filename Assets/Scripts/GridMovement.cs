@@ -7,12 +7,11 @@ public class GridMovement : MonoBehaviour
     private Vector3 direction = Vector3.left;
 
     [SerializeField]
+    private float timeToMove = 0.1f;
+
     private bool isMoving;
-    [SerializeField]
     private Vector3 origPosition;
-    [SerializeField]
     private Vector3 targetPosition;
-    private float timeToMove = 0.2f;
 
     private IEnumerator moveCoroutine;
 
