@@ -58,6 +58,9 @@ public class UIManager : SingletonMono<UIManager>
 
     public void Restart()
     {
+        Time.timeScale = 1;
+
+        EventCenter.GetInstance().Clear();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

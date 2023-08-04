@@ -8,6 +8,9 @@ public class PacMan : MonoBehaviour
     [SerializeField]
     private Vector3 direction = Vector3.left;
 
+    [SerializeField]
+    private Transform resetSpot;
+
     private GridMovement gridMovement;
 
     public GridMovement GridMovement { get => gridMovement;}
@@ -51,4 +54,10 @@ public class PacMan : MonoBehaviour
             gridMovement.Direction = direction;
         }
     }
+    public void Reset()
+    {
+        gridMovement.TeleportTo(resetSpot.transform.position);
+        direction = Vector3.left;
+    }
+
 }

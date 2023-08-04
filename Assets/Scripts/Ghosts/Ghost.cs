@@ -248,12 +248,12 @@ public abstract class Ghost : MonoBehaviour
         }
     }
 
-    protected void Reset()
+    public void Reset()
     {
-        transform.position = resetSpot.transform.position;
+        gridMovement.TeleportTo(resetSpot.transform.position);
         if (currentState != GhostState.Idle)
         {
-            currentState = GhostState.Chase;
+            EnterChaseState();
         }
     }
 

@@ -13,6 +13,12 @@ public class LevelManager : SingletonMono<LevelManager>
     [SerializeField]
     private Transform collectibles;
 
+    [SerializeField]
+    private PacMan pacMan;
+
+    [SerializeField]
+    private List<Ghost> ghosts;
+
     private bool is600ScoreEventTriggered = false;
     private bool is1000ScoreEventTriggered = false;
 
@@ -60,6 +66,19 @@ public class LevelManager : SingletonMono<LevelManager>
         {
             // GameOver
             UIManager.GetInstance().DisplayFinishPanel("Game Over");
+            Time.timeScale = 0;
+        }
+
+        Reset();
+
+    }
+
+    private void Reset()
+    {
+        pacMan.Reset();
+        foreach (Ghost ghost in ghosts)
+        {
+            ghost.Reset();
         }
     }
 
@@ -68,5 +87,6 @@ public class LevelManager : SingletonMono<LevelManager>
         EventCenter.GetInstance().RemoveEventListener<int>("DotEaten", UpdateScore);
         EventCenter.GetInstance().RemoveEventListener<int>("PowerUpEaten", UpdateScore);
         EventCenter.GetInstance().RemoveEventListener<int>("GhostEaten", UpdateScore);
+        EventCenter.GetInstance().RemoveEventListener("PlayerDie", PlayerDie);
     }
 }

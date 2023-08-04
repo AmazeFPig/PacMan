@@ -4413,6 +4413,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262073460}
   m_CullTransparentMesh: 1
+--- !u!114 &276663762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2441353473369085061, guid: bc1426e3d708b7844aadd882670b8b41, type: 3}
+  m_PrefabInstance: {fileID: 1949645404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb586342c3e5ae4696d0f81c7d90ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &287881465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7100,6 +7111,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2559729455902823320, guid: 0611b847956046147a6524973d29422e, type: 3}
   m_PrefabInstance: {fileID: 670091898}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &672217726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4282972109734324938, guid: d25736c401aec4c438227f5fb6e8411b, type: 3}
+  m_PrefabInstance: {fileID: 740978375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5aff31efcbf5e34195da593f1aa39c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &717059231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7256,6 +7278,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2559729455902823320, guid: 0611b847956046147a6524973d29422e, type: 3}
   m_PrefabInstance: {fileID: 719533808}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &722709171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4853238673728971022, guid: 0ee0a6a3959be2247a13eac153eebe40, type: 3}
+  m_PrefabInstance: {fileID: 1664731619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ddc653f35af16c46b6febb34af73bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &724376392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7480,6 +7513,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 4229845936307144811}
+    - target: {fileID: 4282972109734324938, guid: d25736c401aec4c438227f5fb6e8411b, type: 3}
+      propertyPath: resetSpot
+      value: 
+      objectReference: {fileID: 1428978357}
     - target: {fileID: 4282972109734324938, guid: d25736c401aec4c438227f5fb6e8411b, type: 3}
       propertyPath: respawnSpot
       value: 
@@ -11348,6 +11385,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4229845936307144811}
     - target: {fileID: 8142080472168816924, guid: aee0592c0d995184893d58fd755d4cf6, type: 3}
+      propertyPath: resetSpot
+      value: 
+      objectReference: {fileID: 742629467}
+    - target: {fileID: 8142080472168816924, guid: aee0592c0d995184893d58fd755d4cf6, type: 3}
       propertyPath: respawnSpot
       value: 
       objectReference: {fileID: 2091137065}
@@ -13235,6 +13276,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4229845936307144811}
     - target: {fileID: 4853238673728971022, guid: 0ee0a6a3959be2247a13eac153eebe40, type: 3}
+      propertyPath: resetSpot
+      value: 
+      objectReference: {fileID: 250743958}
+    - target: {fileID: 4853238673728971022, guid: 0ee0a6a3959be2247a13eac153eebe40, type: 3}
       propertyPath: respawnSpot
       value: 
       objectReference: {fileID: 2091137065}
@@ -14529,6 +14574,12 @@ MonoBehaviour:
   health: 3
   score: 0
   collectibles: {fileID: 109284139}
+  pacMan: {fileID: 4229845936307144811}
+  ghosts:
+  - {fileID: 1325297920}
+  - {fileID: 276663762}
+  - {fileID: 672217726}
+  - {fileID: 722709171}
 --- !u!1001 &1753082563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16851,6 +16902,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4229845936307144811}
     - target: {fileID: 2441353473369085061, guid: bc1426e3d708b7844aadd882670b8b41, type: 3}
+      propertyPath: resetSpot
+      value: 
+      objectReference: {fileID: 1813403592}
+    - target: {fileID: 2441353473369085061, guid: bc1426e3d708b7844aadd882670b8b41, type: 3}
       propertyPath: respawnSpot
       value: 
       objectReference: {fileID: 2091137065}
@@ -17520,6 +17575,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PacMan
       objectReference: {fileID: 0}
+    - target: {fileID: 5956337845738881859, guid: 3b9b8fb308b3e904fb20d0a8d76a11ea, type: 3}
+      propertyPath: resetSpot
+      value: 
+      objectReference: {fileID: 852203492}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
