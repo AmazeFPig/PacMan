@@ -14,7 +14,7 @@ public class Pinky : Ghost
 
         EventCenter.GetInstance().AddEventListener("600Score", () =>
         {
-            isReady = true;
+            isReadyExitBox = true;
             EnterChaseState();
         });
     }

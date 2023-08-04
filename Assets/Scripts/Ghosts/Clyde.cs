@@ -10,7 +10,7 @@ public class Clyde : Ghost
 
         EventCenter.GetInstance().AddEventListener("1000Score", () =>
         {
-            isReady = true;
+            isReadyExitBox = true;
             EnterChaseState();
         });
     }

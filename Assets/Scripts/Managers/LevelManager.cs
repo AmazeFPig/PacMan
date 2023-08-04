@@ -5,7 +5,13 @@ using UnityEngine;
 public class LevelManager : SingletonMono<LevelManager>
 {
     [SerializeField]
+    private int health = 3;
+
+    [SerializeField]
     private int score = 0;
+
+    [SerializeField]
+    private Transform collectibles;
 
     private bool is600ScoreEventTriggered = false;
     private bool is1000ScoreEventTriggered = false;
@@ -15,6 +21,7 @@ public class LevelManager : SingletonMono<LevelManager>
         EventCenter.GetInstance().AddEventListener<int>("DotEaten", UpdateScore);
         EventCenter.GetInstance().AddEventListener<int>("PowerUpEaten", UpdateScore);
         EventCenter.GetInstance().AddEventListener<int>("GhostEaten", UpdateScore);
+        EventCenter.GetInstance().AddEventListener("PlayerDie", PlayerDie);
     }
 
     private void Update()
@@ -29,6 +36,11 @@ public class LevelManager : SingletonMono<LevelManager>
             EventCenter.GetInstance().EventTrigger("1000Score");
             is1000ScoreEventTriggered = true;
         }
+        if (!collectibles.GetComponentInChildren<Collectible>())
+        {
+            // Player Wins
+            UIManager.GetInstance().DisplayFinishPanel("You Win!");
+        }
     }
 
     private void UpdateScore(int scoreToAdd)
@@ -36,6 +48,19 @@ public class LevelManager : SingletonMono<LevelManager>
         score += scoreToAdd;
         Debug.Log($"Score: {score}");
         UIManager.GetInstance().UpdateScoreText(score);
+    }
+
+    private void PlayerDie()
+    {
+        health--;
+
+        UIManager.GetInstance().UpdateHealthText(health);
+
+        if (health <= 0)
+        {
+            // GameOver
+            UIManager.GetInstance().DisplayFinishPanel("Game Over");
+        }
     }
 
     private void OnDestroy()

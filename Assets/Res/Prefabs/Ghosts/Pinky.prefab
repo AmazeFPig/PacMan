@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 40671474516680741}
   - component: {fileID: 1264219179775239184}
   - component: {fileID: 7859185143433222953}
+  - component: {fileID: 4282972109734324938}
+  - component: {fileID: 1928655732432288277}
   m_Layer: 0
   m_Name: Pinky
   m_TagString: Untagged
@@ -113,7 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: -1, y: 0, z: 0}
-  timeToMove: 0.1
+  isPlayer: 0
+  timeToMove: 0.3
   ghostHomeGate: {fileID: 0}
 --- !u!58 &7859185143433222953
 CircleCollider2D:
@@ -150,3 +153,47 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
+--- !u!114 &4282972109734324938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101148166915446107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5aff31efcbf5e34195da593f1aa39c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  scatterSpot: {fileID: 0}
+  respawnSpot: {fileID: 0}
+  isReady: 0
+  blinky: {fileID: 0}
+--- !u!50 &1928655732432288277
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101148166915446107}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

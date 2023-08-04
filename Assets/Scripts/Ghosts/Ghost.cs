@@ -16,6 +16,9 @@ public abstract class Ghost : MonoBehaviour
     [SerializeField]
     protected Transform respawnSpot;
 
+    [SerializeField]
+    protected Transform resetSpot;
+
     protected AStarPathfinding aStarPathfinding;
 
     protected GridMovement gridMovement;
@@ -38,10 +41,16 @@ public abstract class Ghost : MonoBehaviour
 
     protected float timeRemaining;
 
+    protected float normalTimeToMove = 0.3f;
+
+    protected float frightenTimeToMove = 0.5f;
+
+    protected float eatenTimeToMove = 0.1f;
+
     protected int score = 200;
 
     [SerializeField]
-    protected bool isReady;
+    protected bool isReadyExitBox;
 
 
     protected virtual void Awake()
@@ -104,36 +113,44 @@ public abstract class Ghost : MonoBehaviour
 
     protected void EnterChaseState()
     {
-        if (isReady)
+        spriteRenderer.color = normalColor;
+
+        if (isReadyExitBox)
         {
+            gridMovement.timeToMove = normalTimeToMove;
+
             currentState = GhostState.Chase;
             timeRemaining = chaseTime;
 
-            spriteRenderer.color = normalColor;
         }
         
     }
 
     protected void EnterScatterState()
     {
-        if (isReady) 
+        spriteRenderer.color = normalColor;
+
+        if (isReadyExitBox) 
         {
+            gridMovement.timeToMove = normalTimeToMove;
+
             currentState = GhostState.Scatter;
             timeRemaining = scatterTime;
 
-            spriteRenderer.color = normalColor;
         }
         
     }
 
     protected  void EnterFrightenedState()
     {
-        if (isReady)
+        spriteRenderer.color = frightenColor;
+
+        if (isReadyExitBox)
         {
+            gridMovement.timeToMove = frightenTimeToMove;
+
             currentState = GhostState.Frightened;
             timeRemaining = frightenTime;
-
-            spriteRenderer.color = frightenColor;
 
             GenerateFrightenTargetNode();
         }
@@ -142,11 +159,14 @@ public abstract class Ghost : MonoBehaviour
 
     protected void EnterEatenState()
     {
-        if (isReady)
+        spriteRenderer.color = new Color(Color.white.r, Color.white.g, Color.white.b, 0.5f);
+
+        if (isReadyExitBox)
         {
+            gridMovement.timeToMove = eatenTimeToMove;
+
             currentState = GhostState.Eaten;
 
-            spriteRenderer.color = new Color(Color.white.r, Color.white.g, Color.white.b, 0.5f);
         }
         
     }
@@ -225,6 +245,15 @@ public abstract class Ghost : MonoBehaviour
             {
                 EventCenter.GetInstance().EventTrigger("PlayerDie");
             }
+        }
+    }
+
+    protected void Reset()
+    {
+        transform.position = resetSpot.transform.position;
+        if (currentState != GhostState.Idle)
+        {
+            currentState = GhostState.Chase;
         }
     }
 

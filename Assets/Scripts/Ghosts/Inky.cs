@@ -9,7 +9,7 @@ public class Inky : Ghost
     {
         base.Start();
 
-        isReady = true;
+        isReadyExitBox = true;
         EnterChaseState();
     }
 

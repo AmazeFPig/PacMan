@@ -8,7 +8,7 @@ public class Blinky : Ghost
     protected override void Start()
     {
         base.Start();
-        isReady = true;
+        isReadyExitBox = true;
         EnterChaseState();
     }
 

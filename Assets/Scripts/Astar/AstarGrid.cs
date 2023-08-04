@@ -221,13 +221,14 @@ public class AStarGrid : SingletonMono<AStarGrid>
                 else if (node.IsCross)
                 {
                     Gizmos.color = Color.green;
-                    Gizmos.DrawWireCube(AStarNodeToWorld(node), new Vector3(1, 1, 1) * NodeSideLength);
 
                 }
                 else
                 {
                     Gizmos.color = Color.white;
                 }
+                Gizmos.DrawWireCube(AStarNodeToWorld(node), new Vector3(1, 1, 1) * NodeSideLength);
+
             }
         }
     }
