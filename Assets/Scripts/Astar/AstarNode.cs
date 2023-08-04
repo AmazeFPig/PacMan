@@ -1,10 +1,16 @@
 
 
+using System.Collections.Generic;
+using UnityEngine;
+
 public class AstarNode
 {
     public bool IsObstacle;
+    public bool IsCorner;
+    public bool IsCross;
     public int CoordinateX;
     public int CoordinateY;
+    public List<Vector3> OpenDirections = new();
 
     // GCost: cost of the path from the start node to this node
     public int GCost;

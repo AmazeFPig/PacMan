@@ -7,9 +7,9 @@ public class AStarPathfinding : MonoBehaviour
 
     private List<AstarNode> drawPathNodes = new List<AstarNode>();
 
-    public List<AstarNode> FindPath(Vector3 startPosition, Vector3 endPosition)
+    public List<AstarNode> FindPath(Vector3 endPosition)
     {
-        AstarNode startNode = AStarGrid.GetInstance().WorldToAStarNode(startPosition);
+        AstarNode startNode = AStarGrid.GetInstance().WorldToAStarNode(transform.position);
         AstarNode endNode = AStarGrid.GetInstance().WorldToAStarNode(endPosition);
 
         // neighbors remaining
@@ -43,15 +43,15 @@ public class AStarPathfinding : MonoBehaviour
                 if (!openList.Contains(neighbor))
                 {
                     neighbor.Parent = currentNode;
-                    neighbor.GCost = currentNode.GCost + getManhattanDistance(neighbor, currentNode);
-                    neighbor.HCost = getManhattanDistance(neighbor, endNode);
+                    neighbor.GCost = currentNode.GCost + AStarGrid.GetInstance().GetManhattanDistance(neighbor, currentNode);
+                    neighbor.HCost = AStarGrid.GetInstance().GetManhattanDistance(neighbor, endNode);
                     toMerge.Add(neighbor);
                 }
             }
 
             toMerge.Sort((x, y) => y.FCost - x.FCost);
 
-            openList = mergeLists(openList, toMerge);
+            openList = MergeLists(openList, toMerge);
         }
 
         return new List<AstarNode>();
@@ -78,12 +78,7 @@ public class AStarPathfinding : MonoBehaviour
         return path;
     }
 
-    public int getManhattanDistance(AstarNode start, AstarNode end)
-    {
-        return Mathf.Abs(start.CoordinateX - end.CoordinateX) + Mathf.Abs(start.CoordinateY - end.CoordinateY);
-    }
-
-    public List<AstarNode> mergeLists(List<AstarNode> list1, List<AstarNode> list2)
+    public List<AstarNode> MergeLists(List<AstarNode> list1, List<AstarNode> list2)
     {
         //performs a merge from mergesort on two node lists, preferring list2
         List<AstarNode> result = new List<AstarNode>();
